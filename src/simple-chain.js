@@ -1,24 +1,35 @@
-const chainMaker = {
+chainMaker = {
+  arr: [],
+
   getLength() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+     return  this.arr.length;
   },
-  addLink(value) {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+
+  addLink(value) {  // adds only one link, no need in loop
+    this.arr.push( `( ${value} )`);
+    return this;  //to make it chainable
   },
+
   removeLink(position) {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    if (position < 1 || isNaN(position) || position > this.getLength() || position % 1 > 0) {
+      this.arr = []
+      throw new Error();
+    }
+    this.arr.splice(position-1,1);
+    return this;
   },
+
   reverseChain() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    this.arr = this.arr.reverse();
+   return this;
   },
+
   finishChain() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    let string  = this.arr.join('~~'); // save to return after cleaning the chain
+    this.arr = [];
+    return string;
   }
 };
 
 module.exports = chainMaker;
+
